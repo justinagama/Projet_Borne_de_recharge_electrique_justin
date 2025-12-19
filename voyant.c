@@ -16,19 +16,26 @@ void voyant_initialiser()
         printf("Erreur pas de mem sh\n");
     }
 }
+/*---------------------------------------------------------------------*/
+
+void voyants_set_charge(led ledstate) 
+{
+    io_v->led_charge = ledstate;
+}
 
 /*--------------------------------------------------------------------- */
-void voyant_dispo(led Mode)
+void voyant_set_dispo(led Mode)
 {
-    io_v->led_dispo= Mode;
+    io_v->led_dispo = Mode;
 }
+
 
 /*---------------------------------------------------------------------*/
 // le voyan charge doit clignoter 
 
 void voyant_blink_charge(led Mode)
 {
-  int depart_timer =0,temps_precedent =0;
+  int depart_timer = 0,temps_precedent =0;
     timer_initialiser();
     timer_raz(&depart_timer);
      while (timer_valeur(depart_timer)<=8)
@@ -47,10 +54,14 @@ void voyant_blink_charge(led Mode)
     
     
 }
-
+/*---------------------------------------------------------------------*/
+void voyant_set_defaut(led Mode)
+{
+  io_v->led_defaut = Mode;
+}
 
 /*---------------------------------------------------------------------*/
-void voyant_defaut(led Mode)
+void voyant_blink_defaut(led Mode)
 {
     int depart_timer =0;
 
@@ -69,17 +80,16 @@ void voyant_defaut(led Mode)
         }
     }
 
-}/*---------------------------------------------------------------------*/
-
-void voyants_set_charge(led ledstate) 
-{
-    io_v->led_charge = ledstate;
 }
-
-
 /*---------------------------------------------------------------------*/
 
-void voyant_prise(led Mode)
+void voyant_set_prise(led Mode);
 {
     io_v->led_prise=Mode;
+}
+
+/*---------------------------------------------------------------------*/
+void voyant_set_trappe(led Mode)
+{
+    io_v->led_trappe=Mode;
 }

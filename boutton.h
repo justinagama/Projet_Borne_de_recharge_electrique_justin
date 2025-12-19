@@ -8,8 +8,7 @@
 #include <unistd.h>
 
 void boutons_initialiser();
-void boutons_dispo_off(void);
-int boutons_attente_charge(void);
-int bouton_stop(void);
+int boutons_appuie_boutons_charge(void);
+int bouton_appuie_boutons_stop(void);
 
 #endif // BOUTONS_H

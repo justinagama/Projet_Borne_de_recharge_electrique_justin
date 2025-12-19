@@ -1,23 +1,6 @@
-lecteurcarte.o: lecteurcarte.c lecteurcarte.h \
- /shared/TCii/include/lcarte.h /shared/TCii/include/memoire_borne.h \
- /shared/TCii/include/donnees_borne.h \
- /shared/TCii/include/donnees_borne.h bool.h voyant.h
-borne.o: borne.c /shared/TCii/include/memoire_borne.h \
- /shared/TCii/include/donnees_borne.h \
- /shared/TCii/include/donnees_borne.h lecteurcarte.h \
- /shared/TCii/include/lcarte.h bool.h voyant.h base_clients.h timer.h
-base_clients.o: base_clients.c base_clients.h \
- /shared/TCii/include/lcarte.h /shared/TCii/include/memoire_borne.h \
- /shared/TCii/include/donnees_borne.h \
- /shared/TCii/include/donnees_borne.h bool.h voyant.h
-boutton.o: boutton.c boutton.h /shared/TCii/include/donnees_borne.h \
- /shared/TCii/include/memoire_borne.h \
- /shared/TCii/include/donnees_borne.h voyant.h \
- /shared/TCii/include/lcarte.h timer.h
-voyant.o: voyant.c voyant.h /shared/TCii/include/lcarte.h \
- /shared/TCii/include/memoire_borne.h \
- /shared/TCii/include/donnees_borne.h \
- /shared/TCii/include/donnees_borne.h timer.h
-timer.o: timer.c timer.h /shared/TCii/include/donnees_borne.h \
- /shared/TCii/include/memoire_borne.h \
- /shared/TCii/include/donnees_borne.h
+lecteurcarte.o: lecteurcarte.c lecteurcarte.h bool.h voyant.h
+borne.o: borne.c lecteurcarte.h bool.h voyant.h base_clients.h timer.h
+base_clients.o: base_clients.c base_clients.h bool.h voyant.h
+boutton.o: boutton.c boutton.h voyant.h timer.h
+voyant.o: voyant.c voyant.h timer.h
+timer.o: timer.c timer.h

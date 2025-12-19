@@ -38,7 +38,6 @@ void lecteurcarte_lire_carte()
             {
                 voyant_dispo(OFF);
                 voyant_blink_charge(VERT);
-
             }
 
         }

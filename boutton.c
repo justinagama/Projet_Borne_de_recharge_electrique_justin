@@ -34,7 +34,7 @@ void boutons_initialiser()
  *
  * @return 1 si le bouton de charge est pressé, 0 sinon.
  */
-int boutons_attente_charge(void)
+int boutons_appuie_boutons_charge(void)
 {
     int etat_btn = 0;              /**< État du bouton (1: pressé, 0: relâché). */
     int time_att;
@@ -51,8 +51,6 @@ int boutons_attente_charge(void)
     }
 
     etat_btn = io_bt->bouton_charge;
-
-    printf("Etat du boutton: %d\n", etat_btn);
     io_bt->bouton_charge = 0; 
 
     return etat_btn;
@@ -66,7 +64,7 @@ int boutons_attente_charge(void)
  *
  * @return 1 si le bouton d'arrêt est pressé, 0 sinon.
  */
-int bouton_stop(void)
+int bouton_appuie_boutons_stop(void)
 {
     int etat_btn = io_bt->bouton_stop;  /**< État du bouton (1: pressé, 0: relâché). */
     io_bt->bouton_stop = 0;            /**< Réinitialise l'état du bouton après lecture. */
