@@ -9,3 +9,8 @@ make
 ipcclean
 sim_borne &.
 ./borne
+
+
+
+element a rajouter si le client n'est pas dans liste on lui demande si il veux passer l'enregistrement ( on creer alors une clase administrateur aichier liste client ajouter un client retirer un client )
+debut de main vous ete client ou admi 

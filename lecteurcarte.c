@@ -14,30 +14,31 @@ void lecteurcarte_initialiser()
 void lecteurcarte_lire_carte()
 {
         //int numero_carte = 0;
-    Bool N ;
+
     int nouvelle_carte =0;
     io_lc = acces_memoire(&shmid_lc);
     printf("Inserez votre carte\n");
     attente_insertion_carte();
     
     numero_carte = lecture_numero_carte();
-    if(carte_inseree())
+    if(carte_inseree()&&voyant_dispo())
     {
         //numero_carte = lecture_numero_carte();
         //base_clients_ajouter(numero_carte);
         printf("Numero du clien: %d\n", numero_carte);
-        N = base_clients_authentifier(numero_carte);
-        if (N)
+
+        if (base_clients_authentifier(numero_carte))
         {
             printf("authentification reussi\n");
-            
-            if (boutons_attente_charge()==0)
+            voyant_blink_charge(VERT);
+            if (boutons_appuie_boutons_charge()==1)
             {
+                voyant_set_dispo(OFF);
+                
             }
             else
             {
-                voyant_dispo(OFF);
-                voyant_blink_charge(VERT);
+               voyant_set_dispo(VERT);
             }
 
         }
@@ -46,7 +47,7 @@ void lecteurcarte_lire_carte()
             printf("Desoler vous n'ete pas dans la liste \n");
             // faire clignoter le voyant <<defaut>> pendant 8s
             
-            voyant_defaut(ROUGE);
+            voyant_blink_defaut(ROUGE);
 
             // ici nous allons demander au client si il veux s'enregister oui ou non 
 
@@ -65,12 +66,21 @@ void lecteurcarte_lire_carte()
 
         attente_retrait_carte();
         printf("Carte retiree\n");
+        /*
+
+        UC Charger baterie et UC reprendre vehicule
+
+        */
         //liberation_ports();
     }
     else
     {
         printf("Aucune carte inserree\n");
     }
+
+
+
+
     return;
 
 }

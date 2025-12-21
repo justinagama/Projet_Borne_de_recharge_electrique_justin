@@ -17,8 +17,6 @@ void voyant_set_dispo(led Mode);
 void voyant_blink_charge(led Mode);
 void voyant_set_defaut(led Mode);
 void voyant_blink_defaut(led Mode);
-void voyant_set_prise(led Mode);
-void voyant_set_trappe(led Mode);
-
+int voyant_dispo();
 
 #endif

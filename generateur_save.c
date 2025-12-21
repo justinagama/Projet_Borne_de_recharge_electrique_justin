@@ -44,7 +44,8 @@ void generateur_mef(void) {
     int Fin = 0;
 
     while (1) {
-        switch (state) {
+        switch (state) 
+        {
             case A:
                 voyants_set_charge(ROUGE);
                 deverrouiller_trappe();
@@ -56,25 +57,53 @@ void generateur_mef(void) {
                 break;
 
             case B:
-                set_prise(VERT);
+                prise_set_prise(VERT);
                 verrouiller_trappe();
                 generateur_generer_PWM(AC_1K);
-                state = C;
-                break;
+
+                if (generateur_tension() == 9)
+                {
+                    state = C;
+                    break;
+                }
+                if(bouton_appuie_boutons_stop()==1)
+                {
+                    state = E;
+                    break;
+                }
 
             case C:
-                if (bouton_stop() == 1) state = E;
+                if (bouton_appuie_boutons_stop() == 1 || generateur_tension() == 9 ) 
+                {
+                    state = E;
+                    break ;
+                }
                 generateur_fermer_AC();
-                if (bouton_stop() == 1) state = E;
+                if (bouton_appuie_boutons_stop() == 1 || generateur_tension() == 9 ) 
+                {
+                    state = E;
+                    break;
+                }
                 usleep(1000);
-                if (bouton_stop() == 1) state = E;
-                state = D;
-                break;
+                if (bouton_appuie_boutons_stop() == 1 || generateur_tension() == 9 ) 
+                {
+                    state = E;
+                    break;
+                }
+                generateur_generer_PWM(AC_CL);
+                usleep(1000);
+                if(generateur_tension() == 6)
+                {
+                    state = D;
+                    break;
+                }
+
 
             case D:
-                generateur_generer_PWM(AC_CL);
-                while ((generateur_tension() != 9) && (bouton_stop() == 0)) {
-                    printf("Encours...\n");
+                
+                while ((generateur_tension() != 9) || (bouton_stop() == 0)) 
+                {
+                    printf("En cours de charge...\n");
                 }
                 state = E;
                 break;
@@ -106,7 +135,7 @@ void generateur_deconnecter(void) {
     verrouiller_trappe();
     usleep(1000);
     voyant_charge(OFF);
-    set_prise(OFF);
+    prise_set_prise(OFF);
     voyant_dispo(VERT);
     generateur_generer_PWM(OFF);
 }
@@ -118,7 +147,8 @@ void generateur_deconnecter(void) {
  *
  * @param tension La valeur de PWM à appliquer (DC, AC_1K, AC_CL, OFF, etc.).
  */
-void generateur_generer_PWM(pwm tension) {
+void generateur_generer_PWM(pwm tension) 
+{
     io_gs->gene_pwm = tension;
 }
 
@@ -127,7 +157,8 @@ void generateur_generer_PWM(pwm tension) {
  *
  * Coupe le circuit AC pour mettre fin à la charge ou réinitialiser le générateur.
  */
-void generateur_ouvrir_AC(void) {
+void generateur_ouvrir_AC(void) 
+{
     io_gs->contacteur_AC = 0;
 }
 
@@ -136,7 +167,8 @@ void generateur_ouvrir_AC(void) {
  *
  * Active le circuit AC pour permettre la charge du véhicule.
  */
-void generateur_fermer_AC(void) {
+void generateur_fermer_AC(void) 
+{
     io_gs->contacteur_AC = 1;
 }
 
@@ -147,6 +179,7 @@ void generateur_fermer_AC(void) {
  *
  * @return La tension actuelle sous forme de nombre flottant.
  */
-float generateur_tension(void) {
+float generateur_tension(void) 
+{
     return io_gs->gene_u;
 }

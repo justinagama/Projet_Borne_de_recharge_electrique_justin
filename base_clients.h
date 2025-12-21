@@ -15,7 +15,7 @@
 // structure boubleen pour qui servira pour certain test 
 
 
-Bool base_clients_authentifier(int numero_carte);
+int base_clients_authentifier(int numero_carte);
 
 void base_clients_ajouter();
 

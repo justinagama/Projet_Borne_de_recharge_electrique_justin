@@ -51,6 +51,7 @@ int boutons_appuie_boutons_charge(void)
     }
 
     etat_btn = io_bt->bouton_charge;
+    
     io_bt->bouton_charge = 0; 
 
     return etat_btn;

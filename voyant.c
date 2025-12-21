@@ -83,13 +83,25 @@ void voyant_blink_defaut(led Mode)
 }
 /*---------------------------------------------------------------------*/
 
-void voyant_set_prise(led Mode);
-{
-    io_v->led_prise=Mode;
-}
+// void voyant_set_prise(led Mode);
+// {
+//     io_v->led_prise=Mode;
+// }
+
 
 /*---------------------------------------------------------------------*/
-void voyant_set_trappe(led Mode)
+// la fonction pour verifier la disponibilter du voyant vert ou non elle retourne 1 si dispo 0 sinon
+int voyant_dispo()
 {
-    io_v->led_trappe=Mode;
+    int val_dispo =0;
+    if(io_v->led_dispo == VERT)
+    {
+        val_dispo = 1;
+    }
+    else
+    {
+        val_dispo = 0;
+    }
+    return val_dispo;
 }
+

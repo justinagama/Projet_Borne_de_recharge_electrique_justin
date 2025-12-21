@@ -1,10 +1,9 @@
 #include "base_clients.h"
 
-Bool base_clients_authentifier(int numero_carte)
+int base_clients_authentifier(int numero_carte)
 {
     int table[20];
-    int i = 0;
-    Bool N;
+    int i = 0,j =0;
 
     FILE *file = fopen("base_clients.txt", "r");
 
@@ -15,29 +14,26 @@ Bool base_clients_authentifier(int numero_carte)
     }
     
     int client = 0;
-    while (fscanf(file, "%d", &client) == 1)
+    while (fscanf(file, "%d", &client) == 1&& i < 20)
     {
         table[i] = client;
         i++;
         //printf("tab =  \n",table[i]);
     }
 
-    for(int j =0; j < 20; j++)
+    for(j =0; j < 20; j++)
     {
         if(table[j] == numero_carte)
         {
-            N=true;
-            return N;
+            fclose(file);
+            return 1;
         }
-        else
-        {
-            N =false;
-        }
+
     }
 
     fclose(file);
 
-    return N;
+    return 0;
 }
 
 
