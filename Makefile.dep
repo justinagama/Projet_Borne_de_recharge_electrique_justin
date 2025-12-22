@@ -4,3 +4,6 @@ base_clients.o: base_clients.c base_clients.h bool.h voyant.h
 boutton.o: boutton.c boutton.h voyant.h timer.h
 voyant.o: voyant.c voyant.h timer.h
 timer.o: timer.c timer.h
+generateur_save.o: generateur_save.c generateur_save.h voyant.h timer.h \
+ boutton.h prise.h
+prise.o: prise.c prise.h

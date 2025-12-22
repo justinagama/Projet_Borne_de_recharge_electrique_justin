@@ -13,13 +13,14 @@ int main()
     lecteurcarte_initialiser();
     timer_initialiser();
     voyant_initialiser();
-    //generateur_initialiser();
+    generateur_initialiser();
     boutons_initialiser();
 
-    //prise_init();
+    prise_init();
     while (1)
     {        
         lecteurcarte_lire_carte();
+        generateur_charger_vehicule();
     }
 
 }
