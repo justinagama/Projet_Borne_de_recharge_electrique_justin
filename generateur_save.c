@@ -215,3 +215,4 @@ int generateur_tension(void)
 {
     return io_gs->gene_u;
 }
+
