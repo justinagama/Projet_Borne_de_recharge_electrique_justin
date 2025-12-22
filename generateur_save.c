@@ -55,7 +55,6 @@ void generateur_mef(void) {
                 if(generateur_tension() == 9) 
                 {
                     state = B;
-                    printf("OK je suis en A ---> B");
                 }
                 else
                 {
@@ -85,7 +84,6 @@ void generateur_mef(void) {
                 if (generateur_tension() == 6)
                 {
                     state = C;
-                    printf("OK je suis en B ---> C");
                 }
                 else
                 {
@@ -112,7 +110,6 @@ void generateur_mef(void) {
                 if( generateur_tension() == 6)
                 {
                     state = D;
-                    printf("OK je suis en C ---> D");
                 }
                 else
                 {
@@ -133,7 +130,6 @@ void generateur_mef(void) {
                 {
                 	state = D;
                 }
-                printf("OK je suis en D ---> E");
                	sleep(2);
                 break;
 
