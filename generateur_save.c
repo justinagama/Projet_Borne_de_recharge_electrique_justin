@@ -55,13 +55,14 @@ void generateur_mef(void) {
                 if(generateur_tension() == 9) 
                 {
                     state = B;
+                    printf("OK je suis en A ---> B");
                 }
                 else
                 {
                 	state = A;
                 }
                 
-                usleep(1000);
+                sleep(2);
                 break;
 				
 				
@@ -75,21 +76,23 @@ void generateur_mef(void) {
                 
                 prise_set_prise(VERT);
                 verrouiller_trappe();
+               // generateur_ouvrir_AC();
                 generateur_generer_PWM(AC_1K);
-                generateur_ouvrir_AC();
                 
-				usleep(1000);
+                
+				sleep(2);
 				
-                if (generateur_tension() == 9)
+                if (generateur_tension() == 6)
                 {
                     state = C;
+                    printf("OK je suis en B ---> C");
                 }
                 else
                 {
                 	state = B;
                 }
                 
-                usleep(1000);
+                sleep(2);
                 break;
 
             case C:
@@ -109,22 +112,29 @@ void generateur_mef(void) {
                 if( generateur_tension() == 6)
                 {
                     state = D;
+                    printf("OK je suis en C ---> D");
                 }
                 else
                 {
                 	state = C;
                 }
                 
-                usleep(1000);
+                sleep(2);
                 break;
 
 
             case D:
                 printf("En cours de charge...\n");
-                while ((generateur_tension() != 9) || (bouton_appuie_boutons_stop() == 0)) 
+                if((generateur_tension() == 9) || (bouton_appuie_boutons_stop() == 1)) 
                 {
+                	 state = E;
                 }
-                state = E;
+                else
+                {
+                	state = D;
+                }
+                printf("OK je suis en D ---> E");
+               	sleep(2);
                 break;
 
             case E:
