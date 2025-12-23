@@ -7,19 +7,43 @@
 #include "timer.h"
 #include "voyant.h"
 
+
+
+
 int main()
 {
+
 
     lecteurcarte_initialiser();
     timer_initialiser();
     voyant_initialiser();
-    //generateur_initialiser();
+    generateur_initialiser();
     boutons_initialiser();
+    prise_init();
 
-    //prise_init();
-    while (1)
-    {        
-        lecteurcarte_lire_carte();
+    printf("\nChoisir l'operation a effectuer : \n");
+    printf("1- Mode Administrateur \n");
+    printf("2- Mode Utilisateur \n");
+    int choix_mode =0;
+    scanf("%d",&choix_mode);
+    if(choix_mode==1)
+    {
+        administration_mode();
     }
-
+    else if(choix_mode==2)
+    {
+        printf("Mode utilisateur selectionne \n");
+        while (1)
+        {        
+            lecteurcarte_lire_carte();
+            generateur_charger_vehicule();
+            lecteur_carte_reprise_vehicule();
+             
+        }
+    }
+    else
+    {
+        printf("Choix invalide \n");
+    }
+    return 0;
 }

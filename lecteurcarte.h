@@ -10,13 +10,12 @@
 #include "bool.h"
 #include "voyant.h"
 
-// structure boubleen pour qui servira pour certain test 
-// typedef enum boole
-// {
-//     false,
-//     true
-// }Bool;
+/* Nous allons definire une variable globale pour stocker le numero/
+ de la carte inseree pour charger la baterie cela 
+ nous permetra de l'utiliser pour verifier si le vehicule appartient au meme client
+*/ 
 
+int numero_carte_global;
 
 void lecteurcarte_initialiser();
 void lecteurcarte_lire_carte();

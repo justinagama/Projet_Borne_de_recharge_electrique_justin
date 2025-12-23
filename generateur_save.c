@@ -27,7 +27,7 @@ void generateur_initialiser(void)
  * La fonction appelle une machine à états finis (MEF) pour gérer
  * toutes les étapes du processus de charge d'un véhicule électrique.
  */
-void generateur_charger(void) 
+void generateur_charger_vehicule(void) 
 {
     generateur_mef();
 }
@@ -48,70 +48,95 @@ void generateur_mef(void) {
         {
             case A:
                 voyants_set_charge(ROUGE);
-                deverrouiller_trappe();
+                
                 generateur_generer_PWM(DC);
-                while (generateur_tension() != 9) {
-                    printf("Attente branchement prise...\n");
-                }
-                state = B;
-                break;
-
-            case B:
-                prise_set_prise(VERT);
-                verrouiller_trappe();
-                generateur_generer_PWM(AC_1K);
-
-                if (generateur_tension() == 9)
+                deverrouiller_trappe();
+                //printf("Attente branchement prise...\n");
+                if(generateur_tension() == 9) 
                 {
-                    state = C;
-                    break;
+                    state = B;
                 }
+                else
+                {
+                	state = A;
+                }
+                
+                sleep(2);
+                break;
+				
+				
+            case B:
                 if(bouton_appuie_boutons_stop()==1)
                 {
                     state = E;
+                    generateur_generer_PWM(STOP);
                     break;
                 }
+                
+                prise_set_prise(VERT);
+                verrouiller_trappe();
+               // generateur_ouvrir_AC();
+                generateur_generer_PWM(AC_1K);
+                
+                
+				sleep(2);
+				
+                if (generateur_tension() == 6)
+                {
+                    state = C;
+                }
+                else
+                {
+                	state = B;
+                }
+                
+                sleep(2);
+                break;
 
             case C:
-                if (bouton_appuie_boutons_stop() == 1 || generateur_tension() == 9 ) 
+                if (bouton_appuie_boutons_stop() == 1) 
                 {
                     state = E;
+                    generateur_generer_PWM(STOP);
                     break ;
                 }
+                
+          
                 generateur_fermer_AC();
-                if (bouton_appuie_boutons_stop() == 1 || generateur_tension() == 9 ) 
-                {
-                    state = E;
-                    break;
-                }
-                usleep(1000);
-                if (bouton_appuie_boutons_stop() == 1 || generateur_tension() == 9 ) 
-                {
-                    state = E;
-                    break;
-                }
                 generateur_generer_PWM(AC_CL);
-                usleep(1000);
-                if(generateur_tension() == 6)
+                
+                
+    
+                if( generateur_tension() == 6)
                 {
                     state = D;
-                    break;
                 }
+                else
+                {
+                	state = C;
+                }
+                
+                sleep(2);
+                break;
 
 
             case D:
-                
-                while ((generateur_tension() != 9) || (bouton_stop() == 0)) 
+                printf("En cours de charge...\n");
+                if((generateur_tension() == 9) || (bouton_appuie_boutons_stop() == 1)) 
                 {
-                    printf("En cours de charge...\n");
+                	 state = E;
                 }
-                state = E;
+                else
+                {
+                	state = D;
+                }
+               	sleep(2);
                 break;
 
             case E:
                 generateur_ouvrir_AC();
                 generateur_generer_PWM(DC);
-                voyants_charge(VERT);
+                voyants_set_charge(VERT);
                 Fin = 1;
                 break;
         }
@@ -126,17 +151,19 @@ void generateur_mef(void) {
  * La fonction effectue les étapes nécessaires pour déverrouiller la trappe,
  * attendre le débranchedelay_secment de la prise, et réinitialiser l'état de la borne.
  */
-void generateur_deconnecter(void) {
-    voyant_charge();
+void generateur_deconnecter(void) 
+{
+    generateur_ouvrir_AC();
     deverrouiller_trappe();
-    while (tension() != 12) {
-        printf("Attente débranchement prise...\n");
-    }
+    printf("Attente débranchement prise...\n");
+    
+    while (generateur_tension() != 12) { }
+
     verrouiller_trappe();
-    usleep(1000);
-    voyant_charge(OFF);
+    sleep(2);
+    voyants_set_charge(OFF);
     prise_set_prise(OFF);
-    voyant_dispo(VERT);
+    voyant_set_dispo(VERT);
     generateur_generer_PWM(OFF);
 }
 
@@ -179,7 +206,8 @@ void generateur_fermer_AC(void)
  *
  * @return La tension actuelle sous forme de nombre flottant.
  */
-float generateur_tension(void) 
+int generateur_tension(void) 
 {
     return io_gs->gene_u;
 }
+

@@ -23,14 +23,13 @@ void lecteurcarte_lire_carte()
     numero_carte = lecture_numero_carte();
     if(carte_inseree()&&voyant_dispo())
     {
-        //numero_carte = lecture_numero_carte();
-        //base_clients_ajouter(numero_carte);
         printf("Numero du clien: %d\n", numero_carte);
 
         if (base_clients_authentifier(numero_carte))
         {
             printf("authentification reussi\n");
             voyant_blink_charge(VERT);
+            numero_carte_global=numero_carte;
             if (boutons_appuie_boutons_charge()==1)
             {
                 voyant_set_dispo(OFF);
@@ -49,28 +48,24 @@ void lecteurcarte_lire_carte()
             
             voyant_blink_defaut(ROUGE);
 
-            // ici nous allons demander au client si il veux s'enregister oui ou non 
+            // // ici nous allons demander au client si il veux s'enregister oui ou non 
 
-            printf("Voulez vous faire l'enregistrement de votre carte ? entrez 1 si oui 0 si non :");
-            scanf("%d",&nouvelle_carte);
-            if(nouvelle_carte==1)
-            {
-                // demande de droit d'administration qui sera implementé dans la fonction base_clients_ajouter
-                base_clients_ajouter(numero_carte);
-            }
-            else
-            {
-                printf("Vous avez choisir de ne pas enregistrer votre carte :) \n");
-            }
+            // printf("Voulez vous faire l'enregistrement de votre carte ? entrez 1 si oui 0 si non :");
+            // scanf("%d",&nouvelle_carte);
+            // if(nouvelle_carte==1)
+            // {
+            //     // demande de droit d'administration qui sera implementé dans la fonction base_clients_ajouter
+            //     base_clients_ajouter(numero_carte);
+            // }
+            // else
+            // {
+            //     printf("Vous avez choisir de ne pas enregistrer votre carte :) \n");
+            // }
         }
 
         attente_retrait_carte();
         printf("Carte retiree\n");
-        /*
 
-        UC Charger baterie et UC reprendre vehicule
-
-        */
         //liberation_ports();
     }
     else
@@ -78,10 +73,30 @@ void lecteurcarte_lire_carte()
         printf("Aucune carte inserree\n");
     }
 
-
-
-
-    return;
-
+    return 0;
 }
 
+void lecteur_carte_reprise_vehicule()
+{
+    io_lc = acces_memoire(&shmid_lc);
+    int numero_carte = 0;
+
+    printf("\nChargement termine. Veuillez inserer la carte pour reprendre votre vehicule.\n");
+    attente_insertion_carte();
+
+    numero_carte = lecture_numero_carte();
+    if(carte_inseree())
+    {
+        if (base_clients_authentifier(numero_carte) && (numero_carte == numero_carte_global))
+        {   
+            printf("Authentification reussie. Vous pouvez reprendre votre vehicule.\n");
+            generateur_deconnecter();
+            numero_carte_global = 0; // reset du numero de carte global
+        }
+        else
+        {
+            printf("Authentification echouee. Carte non reconnue.\n");
+            voyant_blink_defaut(ROUGE);
+        }
+    }
+}

@@ -16,13 +16,13 @@ CC = gcc
 CFLAGS = -Wall -O -g 
 
 #Version materielle
-INCLDIRS = -I . -I /shared/TCii/include
-LIBDIRS = -L /shared/TCii/lib
+INCLDIRS = -I .
+LIBDIRS = 
 
 #dependance librairie libsmartcard_borne (voir git)
-LIBS64 = -lsmartcard_borne_x64 -lpcsclite
+LIBS64 = -lsmartcard_borne_x64
 
-SRCS = lecteurcarte.c borne.c base_clients.c boutton.c voyant.c timer.c
+SRCS = lecteurcarte.c borne.c base_clients.c boutton.c voyant.c timer.c generateur_save.c prise.c
 
 OBJS = ${SRCS:.c=.o} 
 

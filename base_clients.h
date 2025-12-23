@@ -21,4 +21,6 @@ void base_clients_ajouter();
 
 void afficher_liste_clients();
 
+void administrateur_mode();
+
 #endif
