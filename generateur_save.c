@@ -153,6 +153,7 @@ void generateur_mef(void) {
  */
 void generateur_deconnecter(void) 
 {
+<<<<<<< HEAD
     generateur_ouvrir_AC();
     deverrouiller_trappe();
     printf("Attente débranchement prise...\n");
@@ -161,6 +162,17 @@ void generateur_deconnecter(void)
 
     verrouiller_trappe();
     sleep(2);
+=======
+    voyants_set_charge(VERT);
+    deverrouiller_trappe();
+    printf("Attente débranchement prise...\n");
+    while (generateur_tension() != 12) 
+    {
+        
+    }
+    verrouiller_trappe();
+    usleep(1000);
+>>>>>>> 6f6978d5cb65dce6672d0258c019674df264cbcf
     voyants_set_charge(OFF);
     prise_set_prise(OFF);
     voyant_set_dispo(VERT);
