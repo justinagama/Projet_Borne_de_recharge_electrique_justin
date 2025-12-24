@@ -2,10 +2,13 @@
 #include <memoire_borne.h>
 #include <donnees_borne.h>
 
+#include "generateur_save.h"
 #include "lecteurcarte.h"
 #include "base_clients.h"
 #include "timer.h"
 #include "voyant.h"
+#include "prise.h"
+
 
 
 
@@ -21,7 +24,6 @@ int main()
     boutons_initialiser();
     prise_init();
 
-<<<<<<< HEAD
     printf("\nChoisir l'operation a effectuer : \n");
     printf("1- Mode Administrateur \n");
     printf("2- Mode Utilisateur \n");
@@ -30,13 +32,6 @@ int main()
     if(choix_mode==1)
     {
         administration_mode();
-=======
-    prise_init();
-    while (1)
-    {        
-        lecteurcarte_lire_carte();
-        generateur_charger_vehicule();
->>>>>>> 6f6978d5cb65dce6672d0258c019674df264cbcf
     }
     else if(choix_mode==2)
     {
@@ -45,8 +40,7 @@ int main()
         {        
             lecteurcarte_lire_carte();
             generateur_charger_vehicule();
-            lecteur_carte_reprise_vehicule();
-             
+            lecteur_carte_reprise_vehicule();    
         }
     }
     else
