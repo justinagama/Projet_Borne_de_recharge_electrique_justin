@@ -1,4 +1,6 @@
 #include "generateur_save.h"
+#include "boutton.h"
+
 
 /**
  * @file generateur_save.c
