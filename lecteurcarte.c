@@ -1,4 +1,6 @@
 #include "lecteurcarte.h"
+#include "generateur_save.h"
+
 #include "bool.h"
 
 
