@@ -167,30 +167,38 @@ void administrateur_mode()
     }
 }
 
-void base_clients_supprimer()
+/**
+ * @brief Supprime un client de la base à partir de son numéro de carte.
+ *
+ * @return 1 si le client a été supprimé, 0 sinon
+ */
+int base_clients_supprimer(void)
 {
-    int numero_carte =0; // numero de la carte a supprimer
-    int numero_tempo =0; // numero temporaire pour la lecture
-    int trouve =0; // flag pour indiquer si la carte a ete trouvee
+    int numero_carte;
+    int numero_tempo;
+    int trouve = 0;
+
+    /* Lecture du numéro de carte */
+    numero_carte = lecture_numero_carte();
 
     FILE *file = fopen("base_clients.txt", "r");
     FILE *temp_file = fopen("temp.txt", "w");
 
     if (file == NULL || temp_file == NULL)
     {
-        fprintf(stderr, "Erreur\n");
-        return ;
+        fprintf(stderr, "Erreur d'ouverture des fichiers\n");
+        if (file) fclose(file);
+        if (temp_file) fclose(temp_file);
+        return 0;
     }
 
-    numero_carte = lecture_numero_carte();
-
-    
+    /* Copie de la base sans la carte à supprimer */
     while (fscanf(file, "%d", &numero_tempo) == 1)
     {
-        if(numero_tempo == numero_carte)
+        if (numero_tempo == numero_carte)
         {
             trouve = 1;
-            continue; // ne pas ecrire cette carte dans le fichier temporaire
+            continue;
         }
         fprintf(temp_file, "%d\n", numero_tempo);
     }
@@ -200,13 +208,15 @@ void base_clients_supprimer()
 
     if (trouve)
     {
-        remove("base_clients.txt"); // supprimer l'ancien fichier
-        rename("temp.txt", "base_clients.txt"); // renommer le fichier temporaire
-        printf("Client supprime avec success\n");
+        remove("base_clients.txt");
+        rename("temp.txt", "base_clients.txt");
+        printf("Client supprimé avec succès.\n");
+        return 1;
     }
     else
     {
         remove("temp.txt");
-        printf("Carte non trouvee dans la base.\n");
+        printf("Carte non trouvée dans la base.\n");
+        return 0;
     }
 }
