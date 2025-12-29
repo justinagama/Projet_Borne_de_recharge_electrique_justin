@@ -94,6 +94,11 @@ void lecteur_carte_reprise_vehicule()
         {   
             printf("Authentification reussie. Vous pouvez reprendre votre vehicule.\n");
             generateur_deconnecter();
+            verrouiller_trappe();
+            voyants_set_charge(OFF);
+            prise_set_prise(OFF);
+            voyant_set_dispo(VERT);
+            generateur_generer_PWM(OFF);
             numero_carte_global = 0; // reset du numero de carte global
         }
         else
@@ -102,4 +107,4 @@ void lecteur_carte_reprise_vehicule()
             voyant_blink_defaut(ROUGE);
         }
     }
-}
+  }
