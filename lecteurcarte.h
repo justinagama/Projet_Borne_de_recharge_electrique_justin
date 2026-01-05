@@ -15,7 +15,7 @@
  nous permetra de l'utiliser pour verifier si le vehicule appartient au meme client
 */ 
 
-int numero_carte_global;
+//int numero_carte_global;
 
 void lecteurcarte_initialiser();
 void lecteurcarte_lire_carte();
