@@ -76,8 +76,8 @@ int main()
         while (1)
         {        
             lecteurcarte_lire_carte();
-            generateur_charger_vehicule();
-            lecteur_carte_reprise_vehicule();    
+            //generateur_charger_vehicule();
+            //lecteur_carte_reprise_vehicule();    
         }
     }
     else
