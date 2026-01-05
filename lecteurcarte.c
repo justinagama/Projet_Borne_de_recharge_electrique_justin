@@ -8,6 +8,7 @@
 entrees* io_lc;
 int shmid_lc;
 int numero_carte = 0;
+int numero_carte_global =0;
 void lecteurcarte_initialiser()
 {
     initialisations_ports();
@@ -42,30 +43,26 @@ void lecteurcarte_lire_carte()
             {
                voyant_set_dispo(VERT);
             }
+            printf("Retiree votre carte\n");
+            attente_retrait_carte();
+            printf("Carte retiree\n");
+            generateur_charger_vehicule();
+            sleep(2);
+            lecteur_carte_reprise_vehicule();
 
         }
         else
         {
             printf("Desoler vous n'ete pas dans la liste \n");
+            
+            printf("Connectez vous en mode administrateur pour vous enregistrez \n");
             // faire clignoter le voyant <<defaut>> pendant 8s
             
             voyant_blink_defaut(ROUGE);
 
-            // // ici nous allons demander au client si il veux s'enregister oui ou non 
-
-            // printf("Voulez vous faire l'enregistrement de votre carte ? entrez 1 si oui 0 si non :");
-            // scanf("%d",&nouvelle_carte);
-            // if(nouvelle_carte==1)
-            // {
-            //     // demande de droit d'administration qui sera implementé dans la fonction base_clients_ajouter
-            //     base_clients_ajouter(numero_carte);
-            // }
-            // else
-            // {
-            //     printf("Vous avez choisir de ne pas enregistrer votre carte :) \n");
-            // }
+            
         }
-
+        printf("Retiree votre carte\n");
         attente_retrait_carte();
         printf("Carte retiree\n");
 
