@@ -1,3 +1,15 @@
+/**
+ * @file lecteurcarte.h
+ * @author —
+ * @date —
+ * @brief Interface du module lecteur de carte.
+ *
+ * Ce fichier définit les fonctions permettant :
+ * - l’initialisation du lecteur de carte,
+ * - la lecture et l’authentification d’une carte client,
+ * - le contrôle de l’accès à la borne de recharge.
+ */
+
 #ifndef LECTEURCARTE_H
 #define LECTEURCARTE_H
 
@@ -10,14 +22,22 @@
 #include "bool.h"
 #include "voyant.h"
 
-/* Nous allons definire une variable globale pour stocker le numero/
- de la carte inseree pour charger la baterie cela 
- nous permetra de l'utiliser pour verifier si le vehicule appartient au meme client
-*/ 
-
-//int numero_carte_global;
-
+/**
+ * @brief Initialise le lecteur de carte.
+ *
+ * Configure les ports matériels nécessaires
+ * à l’utilisation du lecteur.
+ */
 void lecteurcarte_initialiser();
+
+/**
+ * @brief Lit et traite une carte client.
+ *
+ * Cette fonction gère :
+ * - l’insertion de la carte,
+ * - l’authentification du client,
+ * - le lancement de la charge si autorisé.
+ */
 void lecteurcarte_lire_carte();
 
 #endif // LECTEURCARTE_H
