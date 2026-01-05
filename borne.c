@@ -34,7 +34,7 @@ int main()
     scanf("%d",&choix_mode);
     if(choix_mode==1)
     {
-        administration_mode();
+        administrateur_mode();
     }
     else if(choix_mode==2)
     {
