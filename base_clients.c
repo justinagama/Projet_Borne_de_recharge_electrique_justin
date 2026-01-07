@@ -1,29 +1,29 @@
 /**
  * @file base_clients.c
- * @author —
- * @date —
- * @brief Gestion de la base de données des clients.
+ * @author â€”
+ * @date â€”
+ * @brief Gestion de la base de donnÃ©es des clients.
  *
  * Ce module permet :
- * - l’authentification d’un client via son numéro de carte,
- * - l’ajout d’un nouveau client (mode administrateur),
- * - la suppression d’un client,
- * - l’affichage de la liste des clients enregistrés.
+ * - lâ€™authentification dâ€™un client via son numÃ©ro de carte,
+ * - lâ€™ajout dâ€™un nouveau client (mode administrateur),
+ * - la suppression dâ€™un client,
+ * - lâ€™affichage de la liste des clients enregistrÃ©s.
  *
- * La base clients est stockée dans un fichier texte
- * nommé "base_clients.txt".
+ * La base clients est stockÃ©e dans un fichier texte
+ * nommÃ© "base_clients.txt".
  */
 
 #include "base_clients.h"
 
 /**
- * @brief Authentifie un client à partir de son numéro de carte.
+ * @brief Authentifie un client Ã  partir de son numÃ©ro de carte.
  *
  * Cette fonction lit le fichier de la base clients et
- * vérifie si le numéro de carte fourni existe.
+ * vÃ©rifie si le numÃ©ro de carte fourni existe.
  *
- * @param numero_carte Numéro de carte à vérifier
- * @return 1 si la carte est trouvée, 0 sinon
+ * @param numero_carte NumÃ©ro de carte Ã  vÃ©rifier
+ * @return 1 si la carte est trouvÃ©e, 0 sinon
  */
 int base_clients_authentifier(int numero_carte)
 {
@@ -41,7 +41,7 @@ int base_clients_authentifier(int numero_carte)
     int client = 0;
 
     /**
-     * Lecture des numéros de cartes depuis le fichier
+     * Lecture des numÃ©ros de cartes depuis le fichier
      */
     while (fscanf(file, "%d", &client) == 1 && i < 20)
     {
@@ -50,7 +50,7 @@ int base_clients_authentifier(int numero_carte)
     }
 
     /**
-     * Recherche du numéro de carte dans la table
+     * Recherche du numÃ©ro de carte dans la table
      */
     for (j = 0; j < 20; j++)
     {
@@ -66,13 +66,13 @@ int base_clients_authentifier(int numero_carte)
 }
 
 /**
- * @brief Ajoute un nouveau client à la base de données.
+ * @brief Ajoute un nouveau client Ã  la base de donnÃ©es.
  *
  * Cette fonction :
- * - lit le numéro de carte,
- * - vérifie que la carte n’existe pas déjà,
+ * - lit le numÃ©ro de carte,
+ * - vÃ©rifie que la carte nâ€™existe pas dÃ©jÃ ,
  * - demande un code administrateur (3 tentatives),
- * - ajoute la carte au fichier si l’authentification réussit.
+ * - ajoute la carte au fichier si lâ€™authentification rÃ©ussit.
  */
 void base_clients_ajouter()
 {
@@ -91,7 +91,7 @@ void base_clients_ajouter()
     }
 
     /**
-     * Vérification de l'existence de la carte
+     * VÃ©rification de l'existence de la carte
      */
     while (fscanf(file, "%d", &numero_tempo) == 1)
     {
@@ -145,10 +145,10 @@ void base_clients_ajouter()
 }
 
 /**
- * @brief Affiche la liste des clients enregistrés.
+ * @brief Affiche la liste des clients enregistrÃ©s.
  *
  * Cette fonction lit le fichier "base_clients.txt"
- * et affiche chaque numéro de client.
+ * et affiche chaque numÃ©ro de client.
  */
 void afficher_liste_clients()
 {
@@ -169,17 +169,18 @@ void afficher_liste_clients()
     }
 
     fclose(file);
-}
 
+}
 /**
  * @brief Active le mode administrateur.
- *
- * Permet à l’administrateur de :
+ *  printf("Entrez le numero de la carte a supprimer : ");
+        scanf("%d", &numero_carte_admin);
+ * Permet Ã  lâ€™administrateur de :
  * - ajouter un client,
  * - supprimer un client,
  * - afficher la liste des clients.
  */
-void administrateur_mode()
+int administrateur_mode()
 {
     int choix_admin = 0;
 
@@ -187,47 +188,101 @@ void administrateur_mode()
     printf("Entrez 1 pour ajouter un client\n");
     printf("Entrez 2 pour supprimer un client\n");
     printf("Entrez 3 pour afficher la liste des clients\n");
+    printf("Entrez 4 pour retourner dans le mode Utilisateur\n");
     printf("Votre choix : ");
 
     scanf("%d", &choix_admin);
 
     if (choix_admin == 1)
-    {
+    {   
+        printf("Inseree votre carte...\n");
         attente_insertion_carte();
         base_clients_ajouter();
+        printf("retiree votre carte...\n");
         attente_retrait_carte();
         printf("Carte retiree\n");
+        return 0;
     }
     else if (choix_admin == 2)
     {
-        int numero_carte_admin = 0;
-        printf("Entrez le numero de la carte a supprimer : ");
-        scanf("%d", &numero_carte_admin);
         base_clients_supprimer();
+        return 0;
     }
     else if (choix_admin == 3)
     {
-        attente_insertion_carte();
         afficher_liste_clients();
-        attente_retrait_carte();
-        printf("Carte retiree\n");
+        return 0;
+    
     }
+    else if (choix_admin == 4)
+    {
+        return 1;
+    }
+    return 0;
+
 }
 
 /**
- * @brief Supprime un client de la base de données.
+ * @brief Supprime un   do
+    { 
+        printf("\nEntrez le code administrateur tentative %d/3 : ", nfoi + 1);
+        scanf("%d", &codeAdmi);
+    int codeAdmi = 0;
+    int nfoi = 0;
+
+        if (codeAdmi != CodeAdmi)
+        {
+            printf("Code administrateur incorrect.\n");
+        }
+ }
+   
+        nfoi++;
+    } }
+   
+    while (codeAdmi != CodeAdmi && nfoi < 3);
+
+    if (codeAdmi != CodeAdmi)
+    {
+        printf("Echec de l'authentification. Ajout impossible.\n");
+        return;
+    }
+ client de la base de donnÃ©es.
  *
- * La suppression est réalisée en copiant la base
- * dans un fichier temporaire sans le client à supprimer.
+ * La suppression est rÃ©alisÃ©e en copiant la base
+ * dans un fichier temporaire sans le client Ã  supprimer.
  *
- * @return 1 si la suppression a réussi, 0 sinon
+ * @return 1 si la suppression a rÃ©ussi, 0 sinon
  */
 int base_clients_supprimer(void)
 {
+    int codeAdmi = 0;
+    int nfoi = 0;
+
+    do
+    { 
+        printf("\nEntrez le code administrateur tentative %d/3 : ", nfoi + 1);
+        scanf("%d", &codeAdmi);
+
+        if (codeAdmi != CodeAdmi)
+        {
+            printf("Code administrateur incorrect.\n");
+        }
+
+        nfoi++;
+    }
+    while (codeAdmi != CodeAdmi && nfoi < 3);
+
+    if (codeAdmi != CodeAdmi)
+    {
+        printf("Echec de l'authentification. Ajout impossible.\n");
+        return;
+    }
+
     int numero_carte;
     int numero_tempo;
     int trouve = 0;
-
+    printf("Inseree votre carte...\n");
+    attente_insertion_carte();
     numero_carte = lecture_numero_carte();
 
     FILE *file = fopen("base_clients.txt", "r");
@@ -242,7 +297,7 @@ int base_clients_supprimer(void)
     }
 
     /**
-     * Copie de la base sans la carte à supprimer
+     * Copie de la base sans la carte Ã  supprimer
      */
     while (fscanf(file, "%d", &numero_tempo) == 1)
     {
