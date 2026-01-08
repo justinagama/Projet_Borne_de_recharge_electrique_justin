@@ -51,6 +51,7 @@ void generateur_initialiser(void)
  */
 void generateur_charger_vehicule(void) 
 {
+    printf("Attente branchement prise\n");
     generateur_mef();
 }
 
