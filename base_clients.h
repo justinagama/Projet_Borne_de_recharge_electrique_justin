@@ -52,6 +52,7 @@ void afficher_liste_clients();
  * Donne accès aux fonctions d’administration
  * de la base clients.
  */
-void administrateur_mode();
+int administrateur_mode();
+int base_clients_supprimer(void);
 
 #endif // BASE_CLIENTS_H
