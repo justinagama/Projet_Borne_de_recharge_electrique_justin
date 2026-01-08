@@ -57,36 +57,40 @@ int main()
     int choix_mode = 0;
     scanf("%d", &choix_mode);
 
-    if (choix_mode == 1)
-    {
-        /**
-         * Mode administrateur :
-         * gestion de la base clients
-         */
-        administrateur_mode();
-    }
-    else if (choix_mode == 2)
-    {
-        /**
-         * Mode utilisateur :
-         * gestion des cycles de recharge
-         */
-        printf("Mode utilisateur selectionne \n");
-
-        while (1)
-        {        
-            lecteurcarte_lire_carte();
-            //generateur_charger_vehicule();
-            //lecteur_carte_reprise_vehicule();    
+    while (1)
+    {   
+        if (choix_mode == 1)
+        { int u1=0;
+            /**
+            * Mode administrateur :return
+            * gestion de la base clients
+            */
+            u1=administrateur_mode();
+            if(u1==1)
+            {
+                choix_mode =2;
+            }
+            continue ;
+                
         }
-    }
-    else
-    {
-        /**
-         * Gestion d’un choix invalide
-         */
-        printf("Choix invalide \n");
-    }
+        else if (choix_mode == 2)
+            {
+                /**
+                * Mode utilisateur :
+                * gestion des cycles de recharge
+                */
+                printf("Mode utilisateur\n");
+                lecteurcarte_lire_carte();
+            }
+            else
+            {
+                /**
+                * Gestion d’un choix invalide
+                */
+                printf("Choix invalide \n");
+                return 0;
+            }  
+        }
 
     return 0;
 }
