@@ -20,6 +20,7 @@
 #include "generateur_save.h"
 #include "boutton.h"
 #include "bool.h"
+#include "base_clients.h"
 
 /**
  * @brief Pointeur vers la mémoire partagée du lecteur de carte.
@@ -104,26 +105,27 @@ void lecteurcarte_lire_carte()
             if (boutons_appuie_boutons_charge() == 1)
             {
                 voyant_set_dispo(OFF);
+                printf("Retirez votre carte\n");
+                attente_retrait_carte();
+                printf("Carte retiree\n");
+
+                /**
+                * Lancement du processus de charge
+                */
+                generateur_charger_vehicule();
+                sleep(2);
+
+                /**
+                * Procédure de reprise du véhicule après charge
+                */
+                lecteur_carte_reprise_vehicule();
             }
             else
             {
                 voyant_set_dispo(VERT);
             }
 
-            printf("Retirez votre carte\n");
-            attente_retrait_carte();
-            printf("Carte retiree\n");
-
-            /**
-             * Lancement du processus de charge
-             */
-            generateur_charger_vehicule();
-            sleep(2);
-
-            /**
-             * Procédure de reprise du véhicule après charge
-             */
-            lecteur_carte_reprise_vehicule();
+           
         }
         else
         {
@@ -161,9 +163,12 @@ void lecteur_carte_reprise_vehicule()
 {
     io_lc = acces_memoire(&shmid_lc);
     int numero_carte = 0;
+    int val_check = 0;
+    do
+    {
 
     printf("\nChargement termine. Veuillez inserer la carte pour reprendre votre vehicule.\n");
-
+    
     attente_insertion_carte();
     numero_carte = lecture_numero_carte();
 
@@ -188,11 +193,16 @@ void lecteur_carte_reprise_vehicule()
              * Réinitialisation du numéro de carte global
              */
             numero_carte_global = 0;
+            val_check = 1;
+            return;
         }
         else
         {
             printf("Authentification echouee. Carte non reconnue.\n");
             voyant_blink_defaut(ROUGE);
+            val_check = 2;
+            voyant_set_defaut(OFF);
         }
     }
+    }while(val_check == 2);
 }
