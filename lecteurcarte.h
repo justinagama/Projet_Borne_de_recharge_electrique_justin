@@ -40,4 +40,6 @@ void lecteurcarte_initialiser();
  */
 void lecteurcarte_lire_carte();
 
+void lecteur_carte_reprise_vehicule();
+
 #endif // LECTEURCARTE_H
