@@ -55,7 +55,10 @@ int main()
     printf("2- Mode Utilisateur \n");
 
     int choix_mode = 0;
-    scanf("%d", &choix_mode);
+    if(scanf("%d",&choix_mode) !=1)
+    {
+        printf("\nErreur : la valeur entree n'est pas un entier :)\n");
+    }
 
     while (1)
     {   
@@ -75,12 +78,18 @@ int main()
         }
         else if (choix_mode == 2)
             {
+                int um =10;
                 /**
                 * Mode utilisateur :
                 * gestion des cycles de recharge
                 */
                 printf("Mode utilisateur\n");
-                lecteurcarte_lire_carte();
+                um = lecteurcarte_lire_carte();
+                if (um==0)
+                {
+                    choix_mode =1;
+                }
+                continue ;
             }
             else
             {
