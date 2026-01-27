@@ -69,9 +69,9 @@ void lecteurcarte_initialiser()
  *
  * @return 0 Fin normale de la fonction
  */
-void lecteurcarte_lire_carte()
+int lecteurcarte_lire_carte()
 {
-    int nouvelle_carte = 0;
+    int choix_mode = -1;
 
     io_lc = acces_memoire(&shmid_lc);
     printf("Inserez votre carte\n");
@@ -119,6 +119,14 @@ void lecteurcarte_lire_carte()
                 * Procédure de reprise du véhicule après charge
                 */
                 lecteur_carte_reprise_vehicule();
+                printf("\nCharge terminée voullez-vous rester en mode utilisatuer !! :\n");
+                printf("\n0-MOde Utilisateur");
+                printf("\n1-Mode Administrateur");
+                printf("\nFaire votre choix : ");
+                if(scanf("%d",&choix_mode) !=1)
+                {
+                    printf("\nErreur : la valeur entree n'est pas un entier :)\n");
+                }
             }
             else
             {
@@ -147,7 +155,7 @@ void lecteurcarte_lire_carte()
         printf("Aucune carte inseree\n");
     }
 
-    return 0;
+    return choix_mode;
 }
 
 /**
