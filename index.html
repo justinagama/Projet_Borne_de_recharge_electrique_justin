@@ -5,35 +5,90 @@
     <title>Borne de recharge – Vidéo de démonstration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        /* Styles généraux */
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #e0f7fa, #b2ebf2);
             color: #333;
         }
-        h1 {
-            margin-bottom: 10px;
+
+        /* Conteneur principal */
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffffdd;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
+
+        /* En-tête */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #00796b;
+            margin-bottom: 5px;
+        }
+
+        header h2 {
+            font-size: 1.5em;
+            color: #004d40;
+        }
+
+        /* Paragraphe */
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #00695c;
+            text-align: center;
+        }
+
+        /* Vidéo */
         video {
+            display: block;
+            margin: 30px auto;
             max-width: 100%;
-            border: 1px solid #ccc;
+            border: 3px solid #00796b;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             background-color: black;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1em;
+            color: #004d40;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>🎥 Vidéo de démonstration</h1>
+            <h2>Par Toto</h2>
+        </header>
 
-<h1>🎥 Vidéo de démonstration</h1>
+        <p>
+            Cette vidéo présente le fonctionnement de la borne de recharge du véhicule électrique
+            réalisée dans le cadre du projet. Découvrez les étapes clés et le fonctionnement en action !
+        </p>
 
-<p>
-Cette vidéo présente le fonctionnement de la borne de recharge du véhicule électrique
-réalisée dans le cadre du projet.
-</p>
-<video controls preload="metadata" poster="preview.jpg">
-    <source src="Demo_video/Demo11.mp4" type="video/mp4">
-    Votre navigateur ne supporte pas la vidéo.
-</video>
+        <video controls preload="metadata" poster="preview.jpg">
+            <source src="Demo_video/Demo11.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
 
-
+        <footer>
+            &copy; 2026 Justin AGAMA – Tous droits réservés
+        </footer>
+    </div>
 </body>
 </html>
