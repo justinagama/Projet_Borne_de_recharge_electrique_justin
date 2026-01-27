@@ -111,7 +111,11 @@ void base_clients_ajouter()
     do
     { 
         printf("\nEntrez le code administrateur tentative %d/3 : ", nfoi + 1);
-        scanf("%d", &codeAdmi);
+        
+        if(scanf("%d", &codeAdmi) !=1)
+        {
+            printf("\nErreur : la valeur entree n'est pas un entier :)\n");
+        }
 
         if (codeAdmi != CodeAdmi)
         {
@@ -190,8 +194,11 @@ int administrateur_mode()
     printf("Entrez 3 pour afficher la liste des clients\n");
     printf("Entrez 4 pour retourner dans le mode Utilisateur\n");
     printf("Votre choix : ");
-
-    scanf("%d", &choix_admin);
+    if(scanf("%d", &choix_admin) !=1)
+    {
+        printf("\nErreur : la valeur entree n'est pas un entier :)\n");
+    }
+    
 
     if (choix_admin == 1)
     {   
@@ -223,30 +230,7 @@ int administrateur_mode()
 }
 
 /**
- * @brief Supprime un   do
-    { 
-        printf("\nEntrez le code administrateur tentative %d/3 : ", nfoi + 1);
-        scanf("%d", &codeAdmi);
-    int codeAdmi = 0;
-    int nfoi = 0;
-
-        if (codeAdmi != CodeAdmi)
-        {
-            printf("Code administrateur incorrect.\n");
-        }
- }
-   
-        nfoi++;
-    } }
-   
-    while (codeAdmi != CodeAdmi && nfoi < 3);
-
-    if (codeAdmi != CodeAdmi)
-    {
-        printf("Echec de l'authentification. Ajout impossible.\n");
-        return;
-    }
- client de la base de données.
+ * @brief Supprime un client de la base de données.
  *
  * La suppression est réalisée en copiant la base
  * dans un fichier temporaire sans le client à supprimer.
@@ -261,7 +245,11 @@ int base_clients_supprimer(void)
     do
     { 
         printf("\nEntrez le code administrateur tentative %d/3 : ", nfoi + 1);
-        scanf("%d", &codeAdmi);
+        
+        if(scanf("%d", &codeAdmi) !=1)
+        {
+            printf("\nErreur : la valeur entree n'est pas un entier :)\n");
+        }
 
         if (codeAdmi != CodeAdmi)
         {
