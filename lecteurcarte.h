@@ -38,7 +38,7 @@ void lecteurcarte_initialiser();
  * - l’authentification du client,
  * - le lancement de la charge si autorisé.
  */
-void lecteurcarte_lire_carte();
+int lecteurcarte_lire_carte();
 
 void lecteur_carte_reprise_vehicule();
 
