@@ -10,6 +10,7 @@ ipcclean
 sim_borne &.
 ./borne
 
+🎥 Démonstration vidéo : https://justinagama.github.io/Projet_Borne_de_recharge_electrique_justin/ 
 
 Description du projet
 
@@ -27,16 +28,17 @@ Conception UML
 
 La conception du système repose sur plusieurs modèles UML, réalisés en amont du développement :
 Modèles utilisés
-•	Diagrammes de cas d’utilisation
+1.	Diagrammes de cas d’utilisation
 o	Mode utilisateur
 o	Mode administrateur
-•	Diagrammes de séquence
+2.	Diagrammes de séquence
 o	Lecture de carte
 o	Authentification client
 o	Processus de charge
 o	Reprise du véhicule
-•	Diagramme d’états
+3.	Diagramme d’états
 o	Machine à états finis (MEF) du générateur de charge
+
 Avantages de l’approche UML
 •	Vision claire du fonctionnement global
 •	Séparation nette des responsabilités entre modules
@@ -47,14 +49,14 @@ Architecture logicielle
 Le projet est organisé de manière modulaire, chaque composant fonctionnel étant isolé dans un module dédié.
 
 Module	Rôle
-lecteurcarte	: Lecture et validation des cartes
-base_clients	: Gestion des clients et du mode administrateur
-generateur_save	: Machine à états de charge (PWM, AC, DC)
-prise	: Gestion de la prise et de la trappe
-voyant	: Gestion des voyants (charge, défaut, disponibilité)
-bouton	: Gestion des boutons (charge, arrêt)
-timer :	Gestion des temporisations
-Borne	: Point d’entrée du programme
+1. lecteurcarte	: Lecture et validation des cartes
+2. base_clients	: Gestion des clients et du mode administrateur
+3. generateur_save	: Machine à états de charge (PWM, AC, DC)
+4. prise	: Gestion de la prise et de la trappe
+5. voyant	: Gestion des voyants (charge, défaut, disponibilité)
+6. bouton	: Gestion des boutons (charge, arrêt)
+7. timer :	Gestion des temporisations
+8. Borne	: Point d’entrée du programme
 
 Fonctionnement global
 
@@ -69,10 +71,10 @@ Mode Utilisateur
    
 Mode Administrateur
 
-•	Ajout d’un client
-•	Suppression d’un client
-•	Consultation de la base des clients
-•	Accès sécurisé par code administrateur
+1. Ajout d’un client
+2. Suppression d’un client
+3.	Consultation de la base des clients
+4.	Accès sécurisé par code administrateur
 
 Gestion des voyants
 
@@ -85,7 +87,7 @@ OFF	Système inactif
 Gestion du temps
 
 Le module timer permet :
-•	Les temporisations du système,
-•	Le clignotement des voyants,
-•	La gestion des délais (boutons, sécurité).
+1.	Les temporisations du système,
+2.	Le clignotement des voyants,
+3.	La gestion des délais (boutons, sécurité).
 
