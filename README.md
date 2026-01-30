@@ -17,7 +17,7 @@ Description du projet
 Ce projet consiste à développer le logiciel de contrôle d’une borne de recharge pour véhicule électrique, implémenté en langage C et exécuté sur une plateforme embarquée simulée.
 
 Le système permet :
-1.	L’authentification des utilisateurs par carte,\n
+1.	L’authentification des utilisateurs par carte,
 2.	La gestion complète du cycle de charge,
 3.	La sécurisation de la prise et de la trappe,
 4.	L’indication de l’état du système via des voyants lumineux,
@@ -32,14 +32,23 @@ La conception du système repose sur plusieurs modèles UML, réalisés en amont
 Modèles utilisés
 
 1.	Diagrammes de cas d’utilisation
-o	Mode utilisateur
+
+o Mode utilisateur
+
 o	Mode administrateur
+
 2.	Diagrammes de séquence
+   
 o	Lecture de carte
+
 o	Authentification client
+
 o	Processus de charge
+
 o	Reprise du véhicule
-3.	Diagramme d’états
+
+4.	Diagramme d’états
+
 o	Machine à états finis (MEF) du générateur de charge
 
 Avantages de l’approche UML
@@ -82,9 +91,13 @@ Mode Administrateur
 Gestion des voyants
 
 Voyant	Signification
+
 Vert (disponibilité)	Borne prête
+
 Rouge (charge)	Charge en cours
+
 Clignotement	Authentification / défaut
+
 OFF	Système inactif
 
 Gestion du temps
