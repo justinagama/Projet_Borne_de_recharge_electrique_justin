@@ -15,19 +15,22 @@ sim_borne &.
 Description du projet
 
 Ce projet consiste à développer le logiciel de contrôle d’une borne de recharge pour véhicule électrique, implémenté en langage C et exécuté sur une plateforme embarquée simulée.
+
 Le système permet :
-•	L’authentification des utilisateurs par carte,
-•	La gestion complète du cycle de charge,
-•	La sécurisation de la prise et de la trappe,
-•	L’indication de l’état du système via des voyants lumineux,
-•	Un mode administrateur pour la gestion des clients.
+1.	L’authentification des utilisateurs par carte,\n
+2.	La gestion complète du cycle de charge,
+3.	La sécurisation de la prise et de la trappe,
+4.	L’indication de l’état du système via des voyants lumineux,
+5.	Un mode administrateur pour la gestion des clients.
 
 Le projet a été conçu selon une démarche de conception UML, avant toute implémentation, afin de garantir une architecture claire, modulaire et maintenable.
 
 Conception UML
 
 La conception du système repose sur plusieurs modèles UML, réalisés en amont du développement :
+
 Modèles utilisés
+
 1.	Diagrammes de cas d’utilisation
 o	Mode utilisateur
 o	Mode administrateur
@@ -40,10 +43,10 @@ o	Reprise du véhicule
 o	Machine à états finis (MEF) du générateur de charge
 
 Avantages de l’approche UML
-•	Vision claire du fonctionnement global
-•	Séparation nette des responsabilités entre modules
-•	Traduction directe des diagrammes en code C
-•	Facilité de maintenance et d’évolution du système
+1.	Vision claire du fonctionnement global
+2.	Séparation nette des responsabilités entre modules
+3.	Traduction directe des diagrammes en code C
+4.	Facilité de maintenance et d’évolution du système
  
 Architecture logicielle
 Le projet est organisé de manière modulaire, chaque composant fonctionnel étant isolé dans un module dédié.
