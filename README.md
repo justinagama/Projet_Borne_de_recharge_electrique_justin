@@ -32,26 +32,25 @@ La conception du système repose sur plusieurs modèles UML, réalisés en amont
 Modèles utilisés
 
 1.	Diagrammes de cas d’utilisation
+   o Mode utilisateur
+  	
+  	o Mode administrateur
+  	
+3.	Diagrammes de séquence
+   o	Lecture de carte
+  	
+  	o	Authentification client
+  	
+  	o	Processus de charge
+  	
+  	o	Reprise du véhicule
 
-o Mode utilisateur
 
-o	Mode administrateur
-
-2.	Diagrammes de séquence
-   
-o	Lecture de carte
-
-o	Authentification client
-
-o	Processus de charge
-
-o	Reprise du véhicule
-
-4.	Diagramme d’états
-
-o	Machine à états finis (MEF) du générateur de charge
+5.	Diagramme d’états
+   o	Machine à états finis (MEF) du générateur de charge
 
 Avantages de l’approche UML
+
 1.	Vision claire du fonctionnement global
 2.	Séparation nette des responsabilités entre modules
 3.	Traduction directe des diagrammes en code C
@@ -61,6 +60,7 @@ Architecture logicielle
 Le projet est organisé de manière modulaire, chaque composant fonctionnel étant isolé dans un module dédié.
 
 Module	Rôle
+
 1. lecteurcarte	: Lecture et validation des cartes
 2. base_clients	: Gestion des clients et du mode administrateur
 3. generateur_save	: Machine à états de charge (PWM, AC, DC)
