@@ -32,12 +32,14 @@ La conception du système repose sur plusieurs modèles UML, réalisés en amont
 Modèles utilisés
 
 1.	Diagrammes de cas d’utilisation
-   o Mode utilisateur
+
+  	o Mode utilisateur
   	
   	o Mode administrateur
   	
 3.	Diagrammes de séquence
-   o	Lecture de carte
+
+  	o	Lecture de carte
   	
   	o	Authentification client
   	
@@ -47,7 +49,8 @@ Modèles utilisés
 
 
 5.	Diagramme d’états
-   o	Machine à états finis (MEF) du générateur de charge
+
+  	o	Machine à états finis (MEF) du générateur de charge
 
 Avantages de l’approche UML
 
@@ -57,6 +60,7 @@ Avantages de l’approche UML
 4.	Facilité de maintenance et d’évolution du système
  
 Architecture logicielle
+
 Le projet est organisé de manière modulaire, chaque composant fonctionnel étant isolé dans un module dédié.
 
 Module	Rôle
